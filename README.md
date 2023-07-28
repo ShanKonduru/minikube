@@ -292,59 +292,103 @@ minikube service hello-minikube
 NOTE: as long as command window is open, the service will be up and running, to close the service you must press Ctrl+C.
 Browser automatically opens navigates to the above URL and you would see something similar to below.
  
-Alternatively, use kubectl to forward the port:
+## Alternatively, use kubectl to forward the port:
+```shell
 kubectl port-forward service/hello-minikube 7080:8080
+```
+```shell
 Forwarding from 127.0.0.1:7080 -> 8080
 Forwarding from [::1]:7080 -> 8080
 NOTE: as long as command window is open, the service will be up and running, to close the service you must press Ctrl+C.
 Tada! Your application is now available at http://localhost:7080/.
- 
+``` 
 You should be able to see the request metadata in the application output. Try changing the path of the request and observe the changes. Similarly, you can do a POST request and observe the body show up in the output.
-Manage your cluster
-Pause Kubernetes without impacting deployed applications:
+# Manage your cluster
+## Pause Kubernetes without impacting deployed applications:
+```shell
 minikube pause
-Unpause a paused instance:
+```
+## Unpause a paused instance:
+```shell
 minikube unpause
-Halt the cluster:
+```
+
+## Halt the cluster:
+```shell
 minikube stop
-Change the default memory limit (requires a restart):
+```
+## Change the default memory limit (requires a restart):
+```shell
 minikube config set memory 9001
-Browse the catalog of easily installed Kubernetes services:
+```
+
+## Browse the catalog of easily installed Kubernetes services:
+```shell
 minikube addons list
-Create a second cluster running an older Kubernetes release:
+```
+
+## Create a second cluster running an older Kubernetes release:
+```shell
 minikube start -p aged --kubernetes-version=v1.16.1
-Delete all of the minikube clusters:
+```
+## Delete all of the minikube clusters:
 minikube delete –all
-C:\Users\E001150\Downloads\minikube>minikube delete --all
+
+```shell
+minikube delete --all
+```
+```shell
 * Deleting "minikube" in docker ...
 * Removing C:\Users\E001150\.minikube\machines\minikube ...
 * Removing C:\Users\E001150\.minikube\machines\minikube-m02 ...
 * Removed all traces of the "minikube" cluster.
 * Successfully deleted all profiles
+```
 
-C:\Users\E001150\Downloads\minikube>minikube delete --all --purge
+```shell
+minikube delete --all --purge
+```
+
+```shell
 * Successfully deleted all profiles
 * Successfully purged minikube directory located at - [C:\Users\E001150\.minikube]
 * Kicbase images have not been deleted. To delete images run:
   - docker rmi gcr.io/k8s-minikube/kicbase:v0.0.39
-Some useful minikube commands
+```
 
+## Some useful minikube commands
+
+```shell
 minikube profile list
+```
+
+```shell
 |----------|-----------|---------|--------------|------|---------|---------|-------|--------|
 | Profile  | VM Driver | Runtime |      IP      | Port | Version | Status  | Nodes | Active |
 |----------|-----------|---------|--------------|------|---------|---------|-------|--------|
 | minikube | docker    | docker  | 192.168.49.2 | 8443 | v1.26.3 | Running |     1 | *      |
 |----------|-----------|---------|--------------|------|---------|---------|-------|--------|
+```
+
 Note number of nodes is shown as 1 here.
+
+```shell
 minikube status
+```
+```shell
 minikube
 type: Control Plane
 host: Running
 kubelet: Running
 apiserver: Running
 kubeconfig: Configured
-Add a Node to existing cluster
+```
+
+### Add a Node to existing cluster
+```shell
 minikube node add
+```
+```shell
 * Adding node m02 to cluster minikube
 ! Cluster was created without any CNI, adding a node to it might cause broken networking.
 * Starting worker node minikube-m02 in cluster minikube
@@ -353,12 +397,15 @@ minikube node add
 * Preparing Kubernetes v1.26.3 on Docker 23.0.2 ...
 * Verifying Kubernetes components...
 * Successfully added m02 to minikube!
-
-To make sure new node is added to existing cluster, type following command and observe the number of nodes is shown as 2.
-C:\Users\E001150\Downloads\minikube>minikube profile list
+```
+### To make sure new node is added to existing cluster, type following command and observe the number of nodes is shown as 2.
+```shell
+minikube profile list
+```
+```shell
 |----------|-----------|---------|--------------|------|---------|---------|-------|--------|
 | Profile  | VM Driver | Runtime |      IP      | Port | Version | Status  | Nodes | Active |
 |----------|-----------|---------|--------------|------|---------|---------|-------|--------|
 | minikube | docker    | docker  | 192.168.49.2 | 8443 | v1.26.3 | Running |     2 | *      |
 |----------|-----------|---------|--------------|------|---------|---------|-------|--------|
-
+```
