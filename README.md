@@ -218,10 +218,13 @@ kube-system   kube-scheduler-minikube            0/1     CrashLoopBackOff   8 (6
 kube-system   storage-provisioner                1/1     Running            2 (16m ago)   21m
 This command lists out all the Pods available and their status along with Age and number of restarts
 	Enabling minikube Dashboard 
-For additional insight into your cluster state, minikube bundles the Kubernetes Dashboard, allowing you to get easily acclimated to your new environment:
+## For additional insight into your cluster state, minikube bundles the Kubernetes Dashboard, allowing you to get easily acclimated to your new environment:
 Open command window
-Type “minikube dashboard”
+```shell
+minikube dashboard
+```
 The output should be as shown below.
+```shell
 * Enabling dashboard ...
   - Using image docker.io/kubernetesui/dashboard:v2.7.0
   - Using image docker.io/kubernetesui/metrics-scraper:v1.0.8
@@ -231,32 +234,51 @@ The output should be as shown below.
 * Launching proxy ...
 * Verifying proxy health ...
 * Opening http://127.0.0.1:57064/api/v1/namespaces/kubernetes-dashboard/services/http:kubernetes-dashboard:/proxy/ in your default browser...
+```
 This command lists out all the Pods available and their status along with Age and number of restarts.
-Enabling metrics server
+## Enabling metrics server
 As suggested above, as metrics service is not enabled , lets try to enable metrics server using the following command.
 Open command window
-Type “minikube addons enable metrics-server”
+```shell
+minikube addons enable metrics-server
+```
+
 The output should be as shown below.
+```shell
 * metrics-server is an addon maintained by Kubernetes. For any concerns contact minikube on GitHub.
 You can view the list of minikube maintainers at: https://github.com/kubernetes/minikube/blob/master/OWNERS
   - Using image registry.k8s.io/metrics-server/metrics-server:v0.6.3
 * The 'metrics-server' addon is enabled
+```
 Observer that the metrics server is enabled.
-Deploy an application using minikube 
+# Deploy an application using minikube 
 Lets assume our application has 3 main parts to it.
 1.	Service 
 2.	Load balancer 
 3.	Ingress
-Deploying Service application
-Create a sample deployment and expose it on port 8080:
+## Deploying Service application
+## Create a sample deployment and expose it on port 8080:
+```shell
 kubectl create deployment hello-minikube --image=kicbase/echo-server:1.0
+```
 output:
+```shell
 deployment.apps/hello-minikube created
+```
+```shell
 kubectl expose deployment hello-minikube --type=NodePort --port=8080
+```
 output:
+
+```shell
 service/hello-minikube exposed
-To see if these services are deployed properly or not.
+```
+
+## To see if these services are deployed properly or not.
+```shell
 minikube service list
+```
+```shell
 |----------------------|---------------------------|--------------|-----|
 |      NAMESPACE       |           NAME            | TARGET PORT  | URL |
 |----------------------|---------------------------|--------------|-----|
@@ -267,15 +289,23 @@ minikube service list
 | kubernetes-dashboard | dashboard-metrics-scraper | No node port |     |
 | kubernetes-dashboard | kubernetes-dashboard      | No node port |     |
 |----------------------|---------------------------|--------------|-----|
+```
 
-
-It may take a moment, but your deployment will soon show up when you run:
+## It may take a moment, but your deployment will soon show up when you run:
+```shell
 kubectl get services hello-minikube
+```
+```shell
 NAME             TYPE       CLUSTER-IP      EXTERNAL-IP   PORT(S)          AGE
 hello-minikube   NodePort   10.105.177.88   <none>        8080:31878/TCP   4m4s
+```
 
-The easiest way to access this service is to let minikube launch a web browser for you:
+## The easiest way to access this service is to let minikube launch a web browser for you:
+```shell
 minikube service hello-minikube
+```
+
+```shell
 |-----------|----------------|-------------|---------------------------|
 | NAMESPACE |      NAME      | TARGET PORT |            URL            |
 |-----------|----------------|-------------|---------------------------|
@@ -289,6 +319,8 @@ minikube service hello-minikube
 |-----------|----------------|-------------|------------------------|
 * Opening service default/hello-minikube in default browser...
 ! Because you are using a Docker driver on windows, the terminal needs to be open to run it.
+```
+
 NOTE: as long as command window is open, the service will be up and running, to close the service you must press Ctrl+C.
 Browser automatically opens navigates to the above URL and you would see something similar to below.
  
