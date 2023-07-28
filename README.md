@@ -9,11 +9,11 @@ NOTE: This exe is available in this directory. Else you can download latest vers
 
 ### Check minikube installation
 Open command window
-``shell
+```shell
 minikube
 ```
 Output should be as shown below.
-```shel
+```shell
 minikube provisions and manages local Kubernetes clusters optimized for development workflows.
 Basic Commands:
   start            Starts a local Kubernetes cluster
