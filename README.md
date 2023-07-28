@@ -265,7 +265,8 @@ The output should be as shown below.
 * Verifying proxy health ...
 * Opening http://127.0.0.1:57064/api/v1/namespaces/kubernetes-dashboard/services/http:kubernetes-dashboard:/proxy/ in your default browser...
 ```
-This command lists out all the Pods available and their status along with Age and number of restarts.
+This command opens browser and navigates to dashboard page, to get back the prompt hit Ctrl+C in the command  window.
+
 ## Enabling metrics server
 As suggested above, as metrics service is not enabled , lets try to enable metrics server using the following command.
 Open command window
