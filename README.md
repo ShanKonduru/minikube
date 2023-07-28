@@ -81,14 +81,19 @@ The output should be as shown below.
 * Enabled addons: storage-provisioner, default-storageclass
 * Done! kubectl is now configured to use "minikube" cluster and "default" namespace by default
 ```
--	In the output “Automatically selected the docker driver. Other choices: virtualbox, ssh”, means minikube by default works with docker driver, you must have docker desktop installed to work with ninikube, there are other alternatives also provided in the documentation. For more information visit this page.
--	Also note that, default addons needed are also installed and configured. 
+In the output “Automatically selected the docker driver. Other choices: virtualbox, ssh”, means minikube by default works with docker driver, you must have docker desktop installed to work with ninikube, there are other alternatives also provided in the documentation. For more information visit this page.
+Also note that, default addons needed are also installed and configured. 
 Now minikube is started and in docker container you should get one image and one container t view the containers and images, lets learn few docker commands and minikube commands.
-Docker commands 
-	Get List of docker command 
+
+# Docker commands 
+## Get List of docker command 
 Open command window
-	Type “docker --help” and hit enter
-	The output should something like below.
+```shell
+docker --help
+```
+
+The output should something like below.
+```shell
 Usage:  docker [OPTIONS] COMMAND
 A self-sufficient runtime for containers
 Common Commands:
@@ -175,26 +180,41 @@ Global Options:
   -v, --version            Print version information and quit
 Run 'docker COMMAND --help' for more information on a command.
 For more help on how to use Docker, head to https://docs.docker.com/go/guides/
+```
 This command displays list all command options available for docker command line utility.
-	Get List of Containers
+## Get List of Containers
 Open command window
-	Type “docker ps” and hit enter
-	The output should something like below.
-CONTAINER ID   IMAGE                                 COMMAND                  CREATED          STATUS          PORTS                                                                                                                                  NAMES
+```shell
+docker ps
+```
+
+The output should some thing like below.
+```shell
+CONTAINER ID   IMAGE                                 COMMAND                  CREATED          STATUS          PORTS                  NAMES
 9c742713ae53   gcr.io/k8s-minikube/kicbase:v0.0.39   "/usr/local/bin/entr…"   13 minutes ago   Up 13 minutes   127.0.0.1:51625->22/tcp, 127.0.0.1:51626->2376/tcp, 127.0.0.1:51623->5000/tcp, 127.0.0.1:51624->8443/tcp, 127.0.0.1:51622->32443/tcp   minikube
+```
+
 This command displays the containers running at that moment in time, 
-Get List of Images 
+## Get the List of Images 
 Open command window
-	Type “docker image ls” and hit enter
-	The output should something like below.
+```shell
+docker image ls
+```
+
+The output should something like below.
+```shell
 REPOSITORY                    TAG       IMAGE ID       CREATED        SIZE
 gcr.io/k8s-minikube/kicbase   v0.0.39   67a4b1138d2d   3 months ago   1.05GB
+```
 This command displays the images available at that moment in time, 
-minikube commands 
-	Using Kubectl commands
+# minikube commands 
+## Using Kubectl commands
 Open command window
-Type “kubectl get pods -A”
+```shell
+kubectl get pods -A
+```
 The output should be as shown below.
+```shell
  NAMESPACE     NAME                               READY   STATUS             RESTARTS      AGE
 kube-system   coredns-787d4945fb-g7hp9           1/1     Running            1 (16m ago)   21m
 kube-system   etcd-minikube                      1/1     Running            2 (16m ago)   21m
@@ -203,21 +223,31 @@ kube-system   kube-controller-manager-minikube   1/1     Running            3 (1
 kube-system   kube-proxy-pggx8                   1/1     Running            2 (16m ago)   21m
 kube-system   kube-scheduler-minikube            0/1     CrashLoopBackOff   8 (6s ago)    21m
 kube-system   storage-provisioner                1/1     Running            2 (16m ago)   21m
-This command listsout all the Pods available and their status along with Age and number of restarts
-	Using minikube Kubectl commands
-Open command window
-Type “minikube kubectl -- get pods -A”
-The output should be as shown below.
- NAMESPACE     NAME                               READY   STATUS             RESTARTS      AGE
-kube-system   coredns-787d4945fb-g7hp9           1/1     Running            1 (16m ago)   21m
-kube-system   etcd-minikube                      1/1     Running            2 (16m ago)   21m
-kube-system   kube-apiserver-minikube            1/1     Running            2 (15m ago)   21m
-kube-system   kube-controller-manager-minikube   1/1     Running            3 (15m ago)   21m
-kube-system   kube-proxy-pggx8                   1/1     Running            2 (16m ago)   21m
-kube-system   kube-scheduler-minikube            0/1     CrashLoopBackOff   8 (6s ago)    21m
-kube-system   storage-provisioner                1/1     Running            2 (16m ago)   21m
+```
+
 This command lists out all the Pods available and their status along with Age and number of restarts
-	Enabling minikube Dashboard 
+
+# Using minikube Kubectl commands
+Open command window
+```shell
+minikube kubectl -- get pods -A
+```
+The output should be as shown below.
+```shell
+ NAMESPACE     NAME                               READY   STATUS             RESTARTS      AGE
+kube-system   coredns-787d4945fb-g7hp9           1/1     Running            1 (16m ago)   21m
+kube-system   etcd-minikube                      1/1     Running            2 (16m ago)   21m
+kube-system   kube-apiserver-minikube            1/1     Running            2 (15m ago)   21m
+kube-system   kube-controller-manager-minikube   1/1     Running            3 (15m ago)   21m
+kube-system   kube-proxy-pggx8                   1/1     Running            2 (16m ago)   21m
+kube-system   kube-scheduler-minikube            0/1     CrashLoopBackOff   8 (6s ago)    21m
+kube-system   storage-provisioner                1/1     Running            2 (16m ago)   21m
+```
+
+This command lists out all the Pods available and their status along with Age and number of restarts
+
+
+# Enabling minikube Dashboard 
 ## For additional insight into your cluster state, minikube bundles the Kubernetes Dashboard, allowing you to get easily acclimated to your new environment:
 Open command window
 ```shell
